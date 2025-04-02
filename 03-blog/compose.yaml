@@ -1,0 +1,32 @@
+services:
+  wordpress:
+    image: wordpress
+    container_name: blog_wp
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: rota42
+      WORDPRESS_DB_PASSWORD: 'Rota42@'
+      WORDPRESS_DB_NAME: rota42-db
+    volumes:
+      - wordpress_vol:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0.32
+    container_name: blog_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: rota42-db
+      MYSQL_USER: rota42
+      MYSQL_PASSWORD: 'Rota42@'
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db_vol:/var/lib/mysql
+
+volumes:
+  wordpress_vol:
+  db_vol:
