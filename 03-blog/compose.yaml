@@ -1,6 +1,6 @@
 services:
   wordpress:
-    image: wordpress
+    image: wordpress:6.7.2
     container_name: blog_wp
     restart: always
     ports:
