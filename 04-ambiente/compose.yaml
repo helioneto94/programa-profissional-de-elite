@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:17.4-bookworm
+    container_name: postgres_db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=pass1234
+      - POSTGRES_USER=db-user
+      - POSTGRES_DB=kubenews
+    volumes:
+      - db_vol:/var/lib/postgresql/data
+    networks:
+      - kube_news_network
+    
+  
+  db_explorer:
+    image: dpage/pgadmin4:9.1.0
+    container_name: pgadmin
+    restart: always
+    ports:
+      - "5050:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=teste@email.com
+      - PGADMIN_DEFAULT_PASSWORD=123456
+    volumes:
+      - pgadmin_vol:/var/lib/pgadmin
+    networks:
+      - kube_news_network
+    depends_on:
+      - db
+
+volumes:
+  db_vol:
+  pgadmin_vol:
+
+networks:
+  kube_news_network:
+    driver: bridge
