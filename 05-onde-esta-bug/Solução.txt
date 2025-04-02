@@ -20,3 +20,4 @@ Correção:
     DB_PASSWORD: pg1234
     DB_USER: ecommerce
     DB_NAME: fakeshop
+
