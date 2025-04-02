@@ -1,0 +1,22 @@
+O log do service 'ecommerce' apresentou a seguinte mensagem:
+
+sqlalchemy.exc.OperationalError: (psycopg.OperationalError) connection failed: password authentication failed for user "fakeshop"
+
+
+
+No service 'ecommerce', as variáveis de ambiente referentes nome do banco de dados e usuário estavam trocadas, e variável de ambiente referente à senha do banco de dados estava diferente da senha cadastrada no service postgre
+
+Variável do postgres:
+    POSTGRES_PASSWORD: pg1234
+    POSTGRES_USER: ecommerce
+    POSTGRES_DB: fakeshop
+
+Variável do ecommerce:
+    DB_PASSWORD: Pg1234
+    DB_USER: fakeshop
+    DB_NAME: ecommerce
+
+Correção:
+    DB_PASSWORD: pg1234
+    DB_USER: ecommerce
+    DB_NAME: fakeshop
