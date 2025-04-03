@@ -1,0 +1,20 @@
+Com a adoção crescente de containers, a Rota42 precisa separar seus ambientes de desenvolvimento e homologação, mas tudo ainda está no mesmo arquivo Compose. Isso gera conflitos de configuração e risco de erro ao subir para produção.
+
+Missão:
+
+Alterar o arquivo compose.yaml do desafio anterior e suportar múltiplos arquivos de ambiente.
+
+Alterar o arquivo compose para suportar o uso de variáveis de ambiente.
+Criar dois arquivos .env, um para cada ambiente:
+.dev.env (ambiente de desenvolvimento).
+.homolog.env(ambiente de homologação).
+Entrega:
+
+Entregar ocompose.yml e os arquivos de ambiente no diretório 06-multiplos-ambientes:
+./06-multiplos-ambientes/compose.yml
+./06-multiplos-ambientes/.dev.env
+./06-multiplos-ambientes/.homolog.env
+
+Comandos e inicialização do compose:
+ENV_FILE=.homolog.env docker compose up -d
+ENV_FILE=.dev.env docker compose up -d
